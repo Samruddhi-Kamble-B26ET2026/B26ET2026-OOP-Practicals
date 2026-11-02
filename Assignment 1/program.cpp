@@ -1,21 +1,38 @@
-#include <iostream>
-#include <fstream>
-using namespace std;
-int main() {
-    ifstream source("source.txt");
-    ofstream destination("destination.txt");
 
-    if (!source.is_open()) {
-        cout << "Error opening source file!" << endl;
-        return 1;
+#include <iostream>
+using namespace std;
+
+int fact(int n)
+{
+    int f = 1;
+    for(int i = 1; i <= n; i++)
+    {
+        f = f * i;
     }
-    if (!destination.is_open()) {
-        cout << "Error opening destination file!" << endl;
-        return 1;
+    return f;
+}
+
+int main()
+{
+    int n;
+    cout << "Enter the number of rows: ";
+    cin >> n;
+
+    for(int i = 0; i < n; i++)
+    {
+        for(int s = 0; s < n-i-1; s++)
+        {
+            cout << " ";
+        }
+
+        for(int j = 0; j <= i; j++)
+        {
+            int ans = fact(i) / (fact(j) * fact(i-j));
+            cout << ans << " ";
+        }
+
+        cout << endl;
     }
-    destination << source.rdbuf();
-    cout << "File copied successfully!" << endl;
-    source.close();
-    destination.close();
+
     return 0;
 }
